@@ -1,11 +1,7 @@
 #include "Globals.h"
-#include "ModulePlayer.h"
-#include "ModulePlayer2.h"
-#include "PhysVehicle3D.h"
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
-#include "PhysBody3D.h"
 #include "Color.h"
 
 #include <stdio.h>
@@ -23,11 +19,6 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
-
-	Mix_ResumeMusic();
-	Mix_SetMusicPosition(0);
-	// Load music
-    App->audio->PlayMusic("Assets/Get_Low.wav");
 
 	App->camera->Move(vec3(0.0f, 4.0f, -12.0f));
 	App->camera->LookAt(vec3(0, 3, 0));
@@ -222,12 +213,7 @@ bool ModuleSceneIntro::Start()
 
 	//geometryList.add(CreateCube(vec3(-181.0f, 6.5f, -411.212f), vec3(1.0f, 13.0f, 815.0f), Blue, 0, "wall1"));
 	//geometryList.add(CreateCube(vec3(-151.028f, 6.5f, -394.152f), vec3(1.0f, 13.0f, 719.176f), Blue, 0, "wall2"));
-    
-    lap = App->audio->LoadFx("Assets/checkpoint.wav");
-    gameEndWin = App->audio->LoadFx("Assets/end.wav");
-    gameEndLoose = App->audio->LoadFx("Assets/endLoose.wav");
-    countDown = App->audio->LoadFx("Assets/Mario_Kart_Countdown.wav");
-    //jump = App->audio->LoadFx("Assets/countdown.wav");
+  
 
     sceneBeginTimer = 0;
     sceneEndTimer = 0;
@@ -254,15 +240,10 @@ update_status ModuleSceneIntro::Update(float dt)
     countDownTimer--;
 
     sceneBeginTimer++;
-    if (App->player->winCondition == true || App->player->looseCondition == true) sceneEndTimer++;
-    if (App->player2->winCondition == true || App->player2->looseCondition == true) sceneEndTimer++;
 
 	//Plane p(0, 1, 0, 0);
 	//p.axis = true;
 	//p.Render();
-    if (sceneBeginTimer <= 1) App->audio->PlayFx(countDown);
-
-    if (sceneEndTimer > 1 && sceneEndTimer <= 3) App->audio->PlayFx(gameEndWin);
 
     if (sceneBeginTimer <= 240)
     {
@@ -284,131 +265,9 @@ update_status ModuleSceneIntro::Update(float dt)
         */
     }
 
-    if (countDownTimer <= 0)
-    {
-        Mix_PauseMusic();
-        if(App->player->winCondition == false && App->player2->winCondition == false) trueLooseCondition = true;
-
-        if(countDownTimer < 0 && countDownTimer >= -1 && trueLooseCondition == true) App->audio->PlayFx(gameEndLoose);
-    }
-
     display(dt);
 
 	return UPDATE_CONTINUE;
-}
-
-void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
-{
-    if (body1->IsSensor())
-    {
-        LOG("Body1: Im a sensor my name is %s", body1->name.GetString());
-
-    }
-    else if (body2->IsSensor())
-    {
-        LOG("Body2: Im a sensor my name is %s", body2->name.GetString());
-
-        // Example
-        /*
-        if (body2->name == "loopsensor1")
-        {
-            swapCamera = true;
-        }
-        */
-
-        if (body2->name == "Barrier_Lap_Sensor_Activator")
-        {
-            lapSensorActivated = true;
-        }
-
-        if (body2->name == "Barrier_Lap_Sensor")
-        {
-            if (lapSensorActivated == true)
-            {
-                App->player->lapDone = true;
-                //App->player2->lapDone = true;
-                lapSensorActivated = false;
-
-                App->audio->PlayFx(lap);
-            }
-        }
-
-        if (body2->name == "Dirt_Slower_Sensor")
-        {
-            App->player->inDirt = true;
-            App->player2->inDirt = true;
-        }
-        if (body2->name == "GroundSensor")
-        {
-            App->player->inDirt = false;
-            App->player2->inDirt = false;
-        }
-        if (body2->name == "Ice_Speeder_Sensor")
-        {
-            App->player->inIce = true;
-            App->player2->inIce = true;
-        }
-        if (body2->name == "iceSensor")
-        {
-            App->player->inIce = false;
-            App->player2->inIce = false;
-        }
-
-        if (body2->name == "Portal_End")
-        {
-            App->player->vehicle->SetPos(App->player->currentPlayerPosition.x(), App->player->currentPlayerPosition.y(), -95);
-            App->player2->vehicle->SetPos(App->player->currentPlayerPosition.x(), App->player->currentPlayerPosition.y(), -95);
-        }
-        if (body2->name == "Portal_Beggining")
-        {
-            App->player->vehicle->SetPos(App->player->currentPlayerPosition.x(), App->player->currentPlayerPosition.y(), 1315);
-            App->player2->vehicle->SetPos(App->player->currentPlayerPosition.x(), App->player->currentPlayerPosition.y(), 1315);
-        }
-    }
-
-    if (body2->name == "Ground Part -1")
-    {
-        App->player->inDirt = false;
-        App->player2->inDirt = false;
-        
-
-    }
-    if (body2->name == "Ground Part 0")
-    {
-        App->player->inDirt = false;
-        App->player2->inDirt = false;
-       
-    }
-    if (body2->name == "Ground Part 1")
-    {
-        App->player->inDirt = false;
-        App->player2->inDirt = false;
-       
-    }
-    if (body2->name == "Ground Part 2")
-    {
-        App->player->inDirt = false;
-        App->player2->inDirt = false;
-     
-    }
-    if (body2->name == "Ground Part 3")
-    {
-        App->player->inDirt = false;
-        App->player2->inDirt = false;
-       
-    }
-    if (body2->name == "Ground Part 4")
-    {
-        App->player->inDirt = false;
-        App->player2->inDirt = false;
-       
-    }
-    if (body2->name == "Ground Part 5")
-    {
-        App->player->inDirt = false;
-        App->player2->inDirt = false;
-        
-    }
 }
 
 Cylinder* ModuleSceneIntro::CreateCylinder(vec3 pos, vec2 heightandAngle, Color rgb, float angle, vec3 pivot, float mass, SString name, bool isSensor) // No sirve
@@ -419,7 +278,6 @@ Cylinder* ModuleSceneIntro::CreateCylinder(vec3 pos, vec2 heightandAngle, Color 
     cylinder->height = heightandAngle.x;
     cylinder->radius = heightandAngle.y;
     cylinder->color = rgb;
-    physBodies.add(App->physics->AddBodySimpleCylinder(*cylinder, mass));
 
     return cylinder;
 }
@@ -431,8 +289,6 @@ Cube* ModuleSceneIntro::CreateCube(vec3 pos, vec3 size, Color rgb, float mass, S
 	cube->size = size;
 	cube->color = rgb;
 
-	physBodies.add(App->physics->AddBodyV2(*cube, mass, isSensor, name));
-
 	return cube;
 }
 
@@ -443,29 +299,8 @@ Cube* ModuleSceneIntro::CreateRamp(vec3 pos, vec3 size, Color rgb, float angle, 
 	cube->SetPos(pos.x, pos.y, pos.z);
 	cube->size = size;
 	cube->color = rgb;
-	physBodies.add(App->physics->AddBodyV2(*cube, mass, isSensor, name));
 
 	return cube;
-}
-
-void ModuleSceneIntro::Circuit(int* lvlcircuit, int* circuitx, int poscircuit)
-{
-
-	//create sensors
-	if (pb_limits.Count() != 0 && s_limits.Count() != 0 && s_limits.Count() == pb_limits.Count())
-	{
-		for (int i = 0; i < s_limits.Count(); i++)
-		{
-			pb_limits[i]->SetAsSensor(true);
-			pb_limits[i]->collision_listeners.add(this);
-		}
-
-		for (int i = 0; i < s_endlvl.Count(); i++)
-		{
-			pb_endlvl[i]->SetAsSensor(true);
-			pb_endlvl[i]->collision_listeners.add(this);
-		}
-	}
 }
 
 void ModuleSceneIntro::display(float dt)
@@ -556,44 +391,8 @@ void ModuleSceneIntro::display(float dt)
         trafficLight2.Render();
         trafficLight3.Render();
     }
-    else if (App->player->winCondition == true || App->player->looseCondition == true || App->player2->winCondition == true || App->player2->looseCondition == true)
-    {
-        trafficLight1.color = Blue;
-        trafficLight2.color = Blue;
-        trafficLight3.color = Blue;
-
-        trafficLight1.Render();
-        trafficLight2.Render();
-        trafficLight3.Render();
-    }
 
     p2List_item<Cube*>* itemCubes = geometryList.getFirst();
-
-    p2List_item<PhysBody3D*>* itemBodies = physBodies.getFirst();
-
-    while (itemBodies != nullptr && itemCubes != nullptr)
-    {
-        if ((itemBodies->data->IsSensor() != true || itemBodies->data->name == "turbo") && itemBodies->data->name != "Inv_Limit")
-        {
-            itemCubes->data->Render();
-        }
-        itemBodies->data->GetTransform(&itemCubes->data->transform);
-        itemCubes = itemCubes->next;
-        itemBodies = itemBodies->next;
-    }
-
-    itemCubes = geometryList.getFirst();
-    itemBodies = physBodies.getFirst();
-    while (itemBodies != nullptr && itemCubes != nullptr)
-    {
-        if (itemBodies->data->name == "turbo")
-        {
-            //itemCubes->data->transform.rotate(angleTurbo, vec3(0.0f, 1.0f, 1.0f));
-        }
-        itemCubes = itemCubes->next;
-        itemBodies = itemBodies->next;
-    }
-    //angleTurbo += 100.0f * dt;
 
     itemCubes = lights.getFirst();
     while (itemCubes != nullptr)

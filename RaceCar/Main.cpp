@@ -2,6 +2,14 @@
 #include "Application.h"
 #include "Globals.h"
 
+//	NEW
+#include <iostream>
+//#include <glad/glad.h>
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include <glfw3.h>
+
 #include "SDL/include/SDL.h"
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
@@ -28,6 +36,19 @@ int main(int argc, char ** argv)
 	int main_return = EXIT_FAILURE;
 	main_states state = MAIN_CREATION;
 	Application* App = NULL;
+
+	//	NEW
+	glfwInit();
+	GLFWwindow* window = glfwCreateWindow(800, 800, "Cool Window", NULL, NULL);
+	
+
+	//	NEW
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
 
 	while (state != MAIN_EXIT)
 	{
