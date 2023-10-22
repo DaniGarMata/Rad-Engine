@@ -52,6 +52,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalLibraryDirectories>$(SolutionDir)\SourceCode\SDL\lib\x64;$(SolutionDir)\SourceCode\Glew\lib\Release\x64;$(SolutionDir)\SourceCode\assimp\lib;$(SolutionDir)\SourceCode\physfs\lib;$(SolutionDir)\SourceCode\freeglut\lib\x64;$(SolutionDir)\SourceCode\Optick\lib\x64\debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
