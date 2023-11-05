@@ -1,70 +1,78 @@
-# Physics-RaceCar
+# Rad Engine
+---
+## About Rad Engine
 
-## Gameplay Features
+### Description
 
+Rad Engine is a geometry viewer developed by Ogylandy Yespagambetov and Dani García.
 
+GitHub Link: https://github.com/DaniGarMata/Rad-Engine
 
-### Win and Lose conditions
+### Team Members
 
-The game consists on an infinite road fuymed by a seamless teleport where you have to drive your car as fast as possible in order to complete 4 laps. If you are too slow and the music ends before you complete the 4 laps, you will loose control of your car thus game over.
+* Ogylandy Yespagambetov: https://github.com/Oga29
+* Dani García: https://github.com/DaniGarMata
+---
+## Engine Functionalities
 
-### Constraints
-If you fall down from the race track you will be teleported back to the start postion without losing the race
+### General
+* Window resizing
+* Tab resizing
+* Tab layout customization
 
-### Two coefficients
+### Camera Controls
 
-There are two different coloroued rectangle paths, The orange one(Sand/Dirt) is slowing down the player. The Blue one(Ice) is speeding up the player. 
+* W - Move forwards
+* A - Move left
+* S - Move backwards
+* D - Move right
+* R - Move up
+* F - Move down
+* Alt+LClick - Rotate
+* Mouse Wheel - Zoom
+* Shift - Double speed
 
-## Key Bindings
+### Menus
+File:
+* Save / Load Project
+* Exit
 
-R - teleport to the start
+Edit:
+* Cut / Copy / Paste
+* Settings / Console tabs toggle
 
-P - win the game
+Create:
+* Create Cube / Sphere / Pyramid / Cylinder / BakerHouse
 
-### On the ground:
+View:
+* Wireframe Mode
+* Disable Textures
+* Cull Faces
+* Disable Lights
+* Disable Ambient Occlusion
 
+Help:
+* GitHub link
+* About tab toggle
 
-Arrows - move your car:
+## Tabs
+GameObject:
+* Select object
 
-Up - forward
+GameObjects Inspector:
+* Mesh
+* Transform
+* Texture
 
-Right - right
+Settings:
+* Window Settings
+    * Brightness
+    * Width / Height
+    * Resizable / Borderless / Fullscreen / Vsync toggles
+* FPS
+* Extra Settings
+* Hardware Specifics 
 
-Left - left
+Console
 
-Down - back
-
-### On air:
-
-Arrows - rotate your car:
-
-Up - forward
-
-Right - right
-
-Left - left
-
-Down - back
-
-### Physics manipulation
-G - Increase gravity
-
-H - Decrease gravity 
-
-M - add the mass to your car
-
-L - lower the mass of your car
-
-T - activate/deactivate forces to your car
-
-
-
-
-# Made by
-
-Ogylandy Yespagambetov - [Oga29](https://github.com/Oga29)  https://github.com/Oga29
-
-
-# Music used
-
-[Lil Jon ft. Eastside boys - Get Low](https://www.youtube.com/watch?v=DKoY1fw7yCo)
+About
