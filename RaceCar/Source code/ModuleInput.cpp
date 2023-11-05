@@ -1,14 +1,18 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "ModuleFBXLoader.h"
+#include "imgui/include/imgui_impl_sdl.h"
+#include "MathGeoLib/MathGeoLib.h"
+#include "assimp/cimport.h"
 
 #define MAX_KEYS 300
 
-ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleInput::ModuleInput(bool start_enabled) : Module(start_enabled)
 {
+	name = "Input";
 	keyboard = new KEY_STATE[MAX_KEYS];
 	memset(keyboard, KEY_IDLE, sizeof(KEY_STATE) * MAX_KEYS);
-	memset(mouse_buttons, KEY_IDLE, sizeof(KEY_STATE) * MAX_MOUSE_BUTTONS);
 }
 
 // Destructor
@@ -20,38 +24,38 @@ ModuleInput::~ModuleInput()
 // Called before render is available
 bool ModuleInput::Init()
 {
-	LOG("Init SDL input event system");
+	LOG_COMMENT("Init SDL input event system");
 	bool ret = true;
 	SDL_Init(0);
 
-	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
+	if (SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
 	{
-		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
+		LOG_COMMENT("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
+	SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 	return ret;
 }
 
 // Called every draw update
-update_status ModuleInput::PreUpdate(float dt)
+bool ModuleInput::PreUpdate(float dt)
 {
-	SDL_PumpEvents();
 
+	SDL_PumpEvents();
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
-	
-	for(int i = 0; i < MAX_KEYS; ++i)
+	//math::Clock::Day();
+	for (int i = 0; i < MAX_KEYS; ++i)
 	{
-		if(keys[i] == 1)
+		if (keys[i] == 1)
 		{
-			if(keyboard[i] == KEY_IDLE)
+			if (keyboard[i] == KEY_IDLE)
 				keyboard[i] = KEY_DOWN;
 			else
 				keyboard[i] = KEY_REPEAT;
 		}
 		else
 		{
-			if(keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
+			if (keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
 				keyboard[i] = KEY_UP;
 			else
 				keyboard[i] = KEY_IDLE;
@@ -64,18 +68,18 @@ update_status ModuleInput::PreUpdate(float dt)
 	mouse_y /= SCREEN_SIZE;
 	mouse_z = 0;
 
-	for(int i = 0; i < 5; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
-		if(buttons & SDL_BUTTON(i))
+		if (buttons & SDL_BUTTON(i))
 		{
-			if(mouse_buttons[i] == KEY_IDLE)
+			if (mouse_buttons[i] == KEY_IDLE)
 				mouse_buttons[i] = KEY_DOWN;
 			else
 				mouse_buttons[i] = KEY_REPEAT;
 		}
 		else
 		{
-			if(mouse_buttons[i] == KEY_REPEAT || mouse_buttons[i] == KEY_DOWN)
+			if (mouse_buttons[i] == KEY_REPEAT || mouse_buttons[i] == KEY_DOWN)
 				mouse_buttons[i] = KEY_UP;
 			else
 				mouse_buttons[i] = KEY_IDLE;
@@ -86,15 +90,17 @@ update_status ModuleInput::PreUpdate(float dt)
 
 	bool quit = false;
 	SDL_Event e;
-	while(SDL_PollEvent(&e))
+	while (SDL_PollEvent(&e))
 	{
-		switch(e.type)
+		ImGui_ImplSDL2_ProcessEvent(&e);
+
+		switch (e.type)
 		{
-			case SDL_MOUSEWHEEL:
+		case SDL_MOUSEWHEEL:
 			mouse_z = e.wheel.y;
 			break;
 
-			case SDL_MOUSEMOTION:
+		case SDL_MOUSEMOTION:
 			mouse_x = e.motion.x / SCREEN_SIZE;
 			mouse_y = e.motion.y / SCREEN_SIZE;
 
@@ -102,28 +108,88 @@ update_status ModuleInput::PreUpdate(float dt)
 			mouse_y_motion = e.motion.yrel / SCREEN_SIZE;
 			break;
 
-			case SDL_QUIT:
+		case SDL_DROPFILE:
+		{
+			VertexData* NewMaterial = new VertexData();
+
+			const char* dropped_filedir = e.drop.file;
+
+			std::string path = App->fs->FixPath(dropped_filedir);
+
+			uint directory_path_start = path.find_last_of("A");
+			uint directory_path_end = path.size();
+
+			path = path.substr(directory_path_start, directory_path_end);
+
+			if (App->fs->GetFileExtension(dropped_filedir) == "fbx" || App->fs->GetFileExtension(dropped_filedir) == "FBX")
+			{
+				App->loaderModels->LoadMeshToGameObject(App->scene_intro->CreateEmptyGameObject("Dropped"), path.c_str(), nullptr);
+			}
+			if (App->fs->GetFileExtension(dropped_filedir) == "png" || App->fs->GetFileExtension(dropped_filedir) == "PNG")
+			{
+				//Add here function to change texture for the object
+				for (int i = 0; i < App->scene_intro->game_objects.size(); i++)
+				{
+					if (App->scene_intro->game_objects[i]->IsSelected())
+					{
+						ModuleComponentMaterial* material = (ModuleComponentMaterial*)App->scene_intro->game_objects[i]->GetComponent(COMPONENT_TYPES::MATERIAL);
+
+						if (App->scene_intro->game_objects[i]->childs.size() > 0)
+						{
+							for (int j = 0; j < App->scene_intro->game_objects[i]->childs.size(); j++)
+							{
+								ModuleComponentMaterial* materialChild = (ModuleComponentMaterial*)App->scene_intro->game_objects[i]->childs[j]->GetComponent(COMPONENT_TYPES::MATERIAL);
+								Texture* newTexture = new Texture();
+								App->materialImport->Import(path.c_str(), newTexture);
+								if (materialChild->materialUsed != nullptr) materialChild->materialUsed = nullptr;
+								materialChild->materialUsed = newTexture;
+							}
+						}
+						Texture* newTexture = new Texture();
+						App->materialImport->Import(path.c_str(), newTexture);
+						if (material->materialUsed != nullptr) material->materialUsed = nullptr;
+						material->materialUsed = newTexture;
+					}
+				}
+			}
+
+			SDL_free(&dropped_filedir);
+		}
+		break;
+
+		case SDL_QUIT:
 			quit = true;
 			break;
 
-			case SDL_WINDOWEVENT:
-			{
-				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
-					App->renderer3D->OnResize(e.window.data1, e.window.data2);
-			}
+		case SDL_WINDOWEVENT:
+		{
+			if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+				App->renderer3D->OnResize(e.window.data1, e.window.data2);
+		}
+
+
+
 		}
 	}
 
-	if(quit == true || keyboard[SDL_SCANCODE_ESCAPE] == KEY_UP)
-		return UPDATE_STOP;
+	if (quit == true || keyboard[SDL_SCANCODE_ESCAPE] == KEY_UP)
+		return false;
 
-	return UPDATE_CONTINUE;
+	return true;
+}
+
+bool ModuleInput::Update(float dt)
+{
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+		App->debug = !App->debug;
+
+	return true;
 }
 
 // Called before quitting
 bool ModuleInput::CleanUp()
 {
-	LOG("Quitting SDL input event subsystem");
+	LOG_COMMENT("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
 }

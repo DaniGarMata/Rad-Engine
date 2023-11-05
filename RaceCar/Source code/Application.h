@@ -1,18 +1,27 @@
 #pragma once
-
-#include "p2List.h"
+#include "Module.h"
+#include <list>
+#include <string>
+#include <vector>
 #include "Globals.h"
 #include "Timer.h"
-#include "Module.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
-#include "ModulePhysics3D.h"
-#include "ModulePlayer.h"
-#include "ModulePlayer2.h"
+#include "ModuleUI.h"
+#include "ModuleFBXLoader.h"
+#include "ModuleMaterials.h"
+#include "JsonParsing.h"
+#include "ModuleFileSystem.h"
+
+// USAR PARA STL: https://github.com/karansaxena/STL_Cheat_Sheets
+
+#define CONFIG_FILENAME	"config.json"
+#define APPLICATION_NAME "EdgeEngine"
+#define ORGANIZATION_NAME "UPC"
 
 class Application
 {
@@ -23,17 +32,22 @@ public:
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
-	ModulePhysics3D* physics;
-	ModulePlayer* player;
-	ModulePlayer2* player2;
+	ModuleUI* ui;
+	ModuleFBXLoader* loaderModels;
+	ModuleMaterial* materialImport;
 
-	bool slowMotion = false;
+	ModuleFileSystem* fs;
 
+	JsonParsing jsonFile;
+
+	bool debug;
 private:
 
+	std::list<Module*> list_modules;
 	Timer	ms_timer;
 	float	dt;
-	p2List<Module*> list_modules;
+	bool saveRequest;
+	bool loadRequest;
 
 public:
 
@@ -41,12 +55,28 @@ public:
 	~Application();
 
 	bool Init();
-	update_status Update();
+	bool Update();
 	bool CleanUp();
+
+	void RequestBrowser(const char* string);
+
+	inline const char* GetAppName() const { return APPLICATION_NAME; }
+	inline const char* GetOrganizationName() const { return ORGANIZATION_NAME; }
+
+	inline void SaveConfigRequest() { saveRequest = true; }
+	inline void LoadConfigRequest() { loadRequest = true; }
+
+	void GetCPU(int& count, int& size);
+	float GetRAM();
+	void GetSDLVersion(int& major, int& minor, int& patch);
+	void AddConsoleLogs(const char* log);
 
 private:
 
 	void AddModule(Module* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
+
+	void SaveConfig();
+	void LoadConfig();
 };

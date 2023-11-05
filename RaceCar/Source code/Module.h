@@ -1,25 +1,25 @@
 #pragma once
 
-class Application;
-struct PhysBody3D;
+class JsonParsing;
 
 class Module
 {
-private :
+public:
+	const char* name;
+
+private:
 	bool enabled;
 
 public:
-	Application* App;
-
-	Module(Application* parent, bool start_enabled = true) : App(parent)
+	Module(bool start_enabled = true) : enabled(start_enabled)
 	{}
 
 	virtual ~Module()
 	{}
 
-	virtual bool Init() 
+	virtual bool Init()
 	{
-		return true; 
+		return true;
 	}
 
 	virtual bool Start()
@@ -27,26 +27,35 @@ public:
 		return true;
 	}
 
-	virtual update_status PreUpdate(float dt)
+	virtual bool PreUpdate(float dt)
 	{
-		return UPDATE_CONTINUE;
+		return true;
 	}
 
-	virtual update_status Update(float dt)
+	virtual bool Update(float dt)
 	{
-		return UPDATE_CONTINUE;
+		return true;
 	}
 
-	virtual update_status PostUpdate(float dt)
+	virtual bool PostUpdate()
 	{
-		return UPDATE_CONTINUE;
+		return true;
 	}
 
-	virtual bool CleanUp() 
-	{ 
-		return true; 
+	virtual bool CleanUp()
+	{
+		return true;
 	}
 
-	virtual void OnCollision(PhysBody3D* body1, PhysBody3D* body2)
-	{}
+	virtual bool LoadConfig(JsonParsing& node)
+	{
+		return true;
+	}
+
+	virtual bool SaveConfig(JsonParsing& node) const
+	{
+		return true;
+	}
+
+	//TODO 7: Create virtual method "On Collision", that recieves the two colliding PhysBodies
 };

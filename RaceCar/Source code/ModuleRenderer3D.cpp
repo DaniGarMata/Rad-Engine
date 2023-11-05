@@ -1,6 +1,8 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleMaterials.h"
+#include "ModuleComponentMesh.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -8,8 +10,20 @@
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
-ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleRenderer3D::ModuleRenderer3D(bool start_enabled) : Module(start_enabled)
 {
+	name = "Renderer";
+
+	atributes.Depth_test = true;
+	atributes.Cull_Face = true;
+	atributes.Lightning = true;
+	atributes.Color_Materials = true;
+	atributes.Texture_2D = true;
+	atributes.Front = true;
+	atributes.AmbientOclussion = true;
+	atributes.Wireframe = false;
+
+	ckeckerTextureid = 0;
 }
 
 // Destructor
@@ -19,22 +33,22 @@ ModuleRenderer3D::~ModuleRenderer3D()
 // Called before render is available
 bool ModuleRenderer3D::Init()
 {
-	LOG("Creating 3D Renderer context");
+	LOG_COMMENT("Creating 3D Renderer context");
 	bool ret = true;
-	
+
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
-	if(context == NULL)
+	if (context == NULL)
 	{
-		LOG("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
+		LOG_COMMENT("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	
-	if(ret == true)
+
+	if (ret == true)
 	{
 		//Use Vsync
-		if(VSYNC && SDL_GL_SetSwapInterval(1) < 0)
-			LOG("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+		if (VSYNC && SDL_GL_SetSwapInterval(1) < 0)
+			LOG_COMMENT("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 
 		//Initialize Projection Matrix
 		glMatrixMode(GL_PROJECTION);
@@ -42,9 +56,9 @@ bool ModuleRenderer3D::Init()
 
 		//Check for error
 		GLenum error = glGetError();
-		if(error != GL_NO_ERROR)
+		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			LOG_COMMENT("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
 
@@ -54,106 +68,63 @@ bool ModuleRenderer3D::Init()
 
 		//Check for error
 		error = glGetError();
-		if(error != GL_NO_ERROR)
+		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			LOG_COMMENT("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
-		
+
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 		glClearDepth(1.0f);
-		
+
 		//Initialize clear color
-		glClearColor(0.f, 1.f, 1.f, 1.f);
+		glClearColor(0.f, 0.f, 0.f, 1.f);
 
 		//Check for error
 		error = glGetError();
-		if(error != GL_NO_ERROR)
+		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			LOG_COMMENT("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
-		
-		GLfloat LightModelAmbient[] = {0.0f, 0.0f, 0.0f, 1.0f};
+
+		GLfloat LightModelAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
-		
+
 		lights[0].ref = GL_LIGHT0;
 		lights[0].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
 		lights[0].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
 		lights[0].SetPos(0.0f, 0.0f, 2.5f);
 		lights[0].Init();
 
-		lights[1].ref = GL_LIGHT0;
-		lights[1].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		lights[1].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		lights[1].SetPos(2.5f, 0.0f, 2.5f);
-		lights[1].Init();
-
-		lights[2].ref = GL_LIGHT0;
-		lights[2].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		lights[2].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		lights[2].SetPos(0.0f, 10.0f, 0.0f);
-		lights[2].Init();
-
-		lights[3].ref = GL_LIGHT0;
-		lights[3].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		lights[3].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		lights[3].SetPos(2.5f, 0.0f, 0.0f);
-		lights[3].Init();
-
-		lights[4].ref = GL_LIGHT0;
-		lights[4].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		lights[4].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		lights[4].SetPos(0.0f, 0.0f, 0.0f);
-		lights[4].Init();
-
-		lights[5].ref = GL_LIGHT0;
-		lights[5].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		lights[5].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		lights[5].SetPos(0.0f, 0.0f, -2.5f);
-		lights[5].Init();
-
-		lights[6].ref = GL_LIGHT0;
-		lights[6].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		lights[6].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		lights[6].SetPos(-2.5f, 0.0f, -2.5f);
-		lights[6].Init();
-
-		lights[7].ref = GL_LIGHT0;
-		lights[7].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		lights[7].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		lights[7].SetPos(-2.5f, 0.0f, 0.0f);
-		lights[7].Init();
-		
-		GLfloat MaterialAmbient[] = {1.0f, 1.0f, 1.0f, 1.0f};
+		GLfloat MaterialAmbient[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MaterialAmbient);
 
-		GLfloat MaterialDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+		GLfloat MaterialDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MaterialDiffuse);
-		
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
+
 		lights[0].Active(true);
-		//lights[1].Active(true);
-		//lights[2].Active(true);
-		//lights[3].Active(true);
-		//lights[4].Active(true);
-		//lights[5].Active(true);
-		//lights[6].Active(true);
-		//lights[7].Active(true);
-		
-		glEnable(GL_LIGHTING);
-		glEnable(GL_COLOR_MATERIAL);
 	}
+
 
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
+	GLenum error = glewInit();
+	if (GLEW_OK != error)
+	{
+		LOG_COMMENT("Glew failed error %s\n", glewGetErrorString(error));
+	}
+	LOG_COMMENT("Glew version: %s\n", glewGetString(GLEW_VERSION));
+
+	App->materialImport->Init();
 
 	return ret;
 }
 
 // PreUpdate: clear buffer
-update_status ModuleRenderer3D::PreUpdate(float dt)
+bool ModuleRenderer3D::PreUpdate(float dt)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
@@ -161,28 +132,174 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(App->camera->GetViewMatrix());
 
+	if (atributes.Depth_test == true)
+	{
+		glEnable(GL_DEPTH_TEST);
+	}
+	if (atributes.Depth_test == false)
+	{
+		glDisable(GL_DEPTH_TEST);
+	}
+	if (atributes.Cull_Face == true)
+	{
+		glEnable(GL_CULL_FACE);
+	}
+	if (atributes.Cull_Face == false)
+	{
+		glDisable(GL_CULL_FACE);
+	}
+	if (atributes.Lightning == true)
+	{
+		glEnable(GL_LIGHTING);
+	}
+	if (atributes.Lightning == false)
+	{
+		glDisable(GL_LIGHTING);
+	}
+	if (atributes.Color_Materials == true)
+	{
+		glEnable(GL_COLOR_MATERIAL);
+	}
+	if (atributes.Color_Materials == false)
+	{
+		glDisable(GL_COLOR_MATERIAL);
+	}
+	if (atributes.Front == true)
+	{
+		glEnable(GL_FRONT);
+	}
+	if (atributes.Front == false)
+	{
+		glDisable(GL_FRONT);
+	}
+	if (atributes.AmbientOclussion == true)
+	{
+		glEnable(GL_AMBIENT);
+	}
+	if (atributes.AmbientOclussion == false)
+	{
+		glDisable(GL_AMBIENT);
+	}
+	if (atributes.Wireframe == true)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
+	if (atributes.Wireframe == false)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+
+
+
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 
-	for(uint i = 0; i < MAX_LIGHTS; ++i)
+	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
-	return UPDATE_CONTINUE;
+
+
+	return true;
 }
 
 // PostUpdate present buffer to screen
-update_status ModuleRenderer3D::PostUpdate(float dt)
+bool ModuleRenderer3D::PostUpdate()
 {
 	SDL_GL_SwapWindow(App->window->window);
-	return UPDATE_CONTINUE;
+	return true;
 }
 
 // Called before quitting
 bool ModuleRenderer3D::CleanUp()
 {
-	LOG("Destroying 3D Renderer");
+	LOG_COMMENT("Destroying 3D Renderer");
+
+
 
 	SDL_GL_DeleteContext(context);
+
+	return true;
+}
+
+void ModuleRenderer3D::DrawGameObjects(ModuleGameObject GameObject)
+{
+	if (GameObject.IsActive())
+	{
+		ModuleComponentsMesh* NewMesh = (ModuleComponentsMesh*)GameObject.GetComponent(COMPONENT_TYPES::MESH);
+		ModuleComponentMaterial* NewMaterial = (ModuleComponentMaterial*)GameObject.GetComponent(COMPONENT_TYPES::MATERIAL);
+		if (NewMesh->IsActive())
+		{
+			if (NewMesh != nullptr)
+			{
+
+
+				glEnableClientState(GL_VERTEX_ARRAY);
+
+				// Render things in Element mode
+				glBindBuffer(GL_ARRAY_BUFFER, NewMesh->mesh.id_vertex);
+				glVertexPointer(3, GL_FLOAT, 0, NULL);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NewMesh->mesh.id_index);
+
+
+				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+				glBindBuffer(GL_ARRAY_BUFFER, NewMesh->mesh.id_uvs);
+
+				if (NewMaterial->IsActive())
+				{
+					if (NewMaterial->materialUsed != nullptr)
+					{
+						glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+						glBindTexture(GL_TEXTURE_2D, NewMaterial->materialUsed->id);
+					}
+				}
+
+				if (App->renderer3D->checkerTextureApplied)
+				{
+					glBindTexture(GL_TEXTURE_2D, ckeckerTextureid);
+				}
+
+
+
+				glDrawElements(GL_TRIANGLES, NewMesh->mesh.num_index, GL_UNSIGNED_INT, NULL);
+
+				glBindTexture(GL_TEXTURE_2D, 0);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+				glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+				glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+				glDisableClientState(GL_VERTEX_ARRAY);
+
+			}
+
+		}
+	}
+
+}
+
+bool ModuleRenderer3D::LoadConfig(JsonParsing& node)
+{
+	atributes.Depth_test = node.GetJsonBool("depth test");
+	atributes.Cull_Face = node.GetJsonBool("cull face");
+	atributes.Lightning = node.GetJsonBool("lightning");
+	atributes.Color_Materials = node.GetJsonBool("color materials");
+	atributes.Texture_2D = node.GetJsonBool("texture 2D");
+	atributes.Front = node.GetJsonBool("front");
+	atributes.AmbientOclussion = node.GetJsonBool("ambient oclussion");
+	atributes.Wireframe = node.GetJsonBool("wireframe");
+
+	return true;
+}
+
+bool ModuleRenderer3D::SaveConfig(JsonParsing& node) const
+{
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "depth test", atributes.Depth_test);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "cull face", atributes.Cull_Face);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "lightning", atributes.Lightning);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "color materials", atributes.Color_Materials);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "texture 2D", atributes.Texture_2D);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "front", atributes.Front);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "ambient oclussion", atributes.AmbientOclussion);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "wireframe", atributes.Wireframe);
 
 	return true;
 }
@@ -199,4 +316,37 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void ModuleRenderer3D::LoadCheckerTexture()
+{
+	GLubyte checker[CHEIGHT][CWIDTH][4];
+
+	for (int i = 0; i < CHEIGHT; ++i)
+	{
+		for (int j = 0; j < CWIDTH; ++j)
+		{
+			int color = ((((i & 0x8) == 0) ^ ((j & 0x8) == 0))) * 255;
+
+			checker[i][j][0] = (GLubyte)color;
+			checker[i][j][1] = (GLubyte)color;
+			checker[i][j][2] = (GLubyte)color;
+			checker[i][j][3] = (GLubyte)255;
+
+		}
+	}
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &ckeckerTextureid);
+	glBindTexture(GL_TEXTURE_2D, ckeckerTextureid);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, CWIDTH, CHEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, checker);
+
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 }

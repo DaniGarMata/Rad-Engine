@@ -1,9 +1,10 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleWindow.h"
-
-ModuleWindow::ModuleWindow(Application* app, bool start_enabled) : Module(app, start_enabled)
+#include "ModuleRenderer3D.h"
+ModuleWindow::ModuleWindow(bool start_enabled) : Module(start_enabled)
 {
+	name = "Window";
 	window = NULL;
 	screen_surface = NULL;
 }
@@ -16,12 +17,12 @@ ModuleWindow::~ModuleWindow()
 // Called before render is available
 bool ModuleWindow::Init()
 {
-	LOG("Init SDL window & surface");
+	LOG_COMMENT("Init SDL window & surface");
 	bool ret = true;
 
-	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		LOG("SDL_VIDEO could not initialize! SDL_Error: %s\n", SDL_GetError());
+		LOG_COMMENT("SDL_VIDEO could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 	else
@@ -35,31 +36,31 @@ bool ModuleWindow::Init()
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-		if(WIN_FULLSCREEN == true)
+		if (WIN_FULLSCREEN == true)
 		{
 			flags |= SDL_WINDOW_FULLSCREEN;
 		}
 
-		if(WIN_RESIZABLE == true)
+		if (WIN_RESIZABLE == true)
 		{
 			flags |= SDL_WINDOW_RESIZABLE;
 		}
 
-		if(WIN_BORDERLESS == true)
+		if (WIN_BORDERLESS == true)
 		{
 			flags |= SDL_WINDOW_BORDERLESS;
 		}
 
-		if(WIN_FULLSCREEN_DESKTOP == true)
+		if (WIN_FULLSCREEN_DESKTOP == true)
 		{
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
 
 		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
-		if(window == NULL)
+		if (window == NULL)
 		{
-			LOG("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+			LOG_COMMENT("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 			ret = false;
 		}
 		else
@@ -75,10 +76,10 @@ bool ModuleWindow::Init()
 // Called before quitting
 bool ModuleWindow::CleanUp()
 {
-	LOG("Destroying SDL window and quitting all SDL systems");
+	LOG_COMMENT("Destroying SDL window and quitting all SDL systems");
 
 	//Destroy window
-	if(window != NULL)
+	if (window != NULL)
 	{
 		SDL_DestroyWindow(window);
 	}
@@ -91,4 +92,72 @@ bool ModuleWindow::CleanUp()
 void ModuleWindow::SetTitle(const char* title)
 {
 	SDL_SetWindowTitle(window, title);
+}
+void ModuleWindow::SetFullscreen(bool fullscreen)
+{
+	SDL_SetWindowFullscreen(window, fullscreen);
+}
+void ModuleWindow::ModifyWidth(int x)
+{
+	SDL_SetWindowSize(window, x, screen_surface->h);
+	App->renderer3D->OnResize(x, screen_surface->h);
+	screen_surface->w = x;
+}
+void ModuleWindow::ModifyHeight(int y)
+{
+	SDL_SetWindowSize(window, screen_surface->w, y);
+	App->renderer3D->OnResize(screen_surface->w, y);
+	screen_surface->h = y;
+}
+void ModuleWindow::Vsync(bool vsync)
+{
+	vsync = SDL_HINT_RENDER_VSYNC;
+}
+void ModuleWindow::ModifyBrightness(float brightness)
+{
+	int result = SDL_SetWindowBrightness(window, brightness);
+
+	if (result != 0)
+	{
+		LOG_COMMENT("Setting Brightness Value");
+	}
+}
+bool ModuleWindow::LoadConfig(JsonParsing& node)
+{
+	App->ui->fullscreen = node.GetJsonBool("fullscreen");
+	App->ui->Vsync = node.GetJsonBool("vsync");
+	App->ui->screenBrightness = node.GetJsonNumber("brightness");
+
+	App->window->SetFullscreen(App->ui->fullscreen);
+	App->window->Vsync(App->ui->Vsync);
+	App->window->ModifyBrightness(App->ui->screenBrightness);
+
+	return true;
+}
+
+bool ModuleWindow::SaveConfig(JsonParsing& node) const
+{
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "fullscreen", App->ui->fullscreen);
+	node.SetNewJsonBool(node.ValueToObject(node.GetRootValue()), "vsync", App->ui->Vsync);
+	node.SetNewJsonNumber(node.ValueToObject(node.GetRootValue()), "brightness", App->ui->screenBrightness);
+
+	return true;
+}
+void ModuleWindow::SetResizable(bool resizable)
+{
+
+}
+void ModuleWindow::SetFullDesktop(bool fullDesktop)
+{
+
+}
+
+float ModuleWindow::GetHeight()
+{
+	return screen_surface->h;
+}
+
+float ModuleWindow::GetWidht()
+{
+	return screen_surface->w;
 }

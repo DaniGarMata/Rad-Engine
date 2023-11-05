@@ -15,12 +15,13 @@ enum KEY_STATE
 class ModuleInput : public Module
 {
 public:
-	
-	ModuleInput(Application* app, bool start_enabled = true);
+
+	ModuleInput(bool start_enabled = true);
 	~ModuleInput();
 
 	bool Init();
-	update_status PreUpdate(float dt);
+	bool PreUpdate(float dt) override;
+	bool Update(float dt) override;
 	bool CleanUp();
 
 	KEY_STATE GetKey(int id) const
@@ -58,6 +59,7 @@ public:
 		return mouse_y_motion;
 	}
 
+
 private:
 	KEY_STATE* keyboard;
 	KEY_STATE mouse_buttons[MAX_MOUSE_BUTTONS];
@@ -66,5 +68,6 @@ private:
 	int mouse_z;
 	int mouse_x_motion;
 	int mouse_y_motion;
+
 	//int mouse_z_motion;
 };
