@@ -39,7 +39,7 @@ File:
 
 Edit:
 * Cut / Copy / Paste
-* Settings / Console tabs toggle
+* Settings / Console tabs
 
 Create:
 * Create Cube / Sphere / Pyramid / Cylinder / BakerHouse
@@ -53,7 +53,7 @@ View:
 
 Help:
 * GitHub link
-* About tab toggle
+* About tab
 
 ## Tabs
 GameObject:
@@ -68,7 +68,7 @@ Settings:
 * Window Settings
     * Brightness
     * Width / Height
-    * Resizable / Borderless / Fullscreen / Vsync toggles
+    * Resizable / Borderless / Fullscreen / Vsync
 * FPS
 * Extra Settings
 * Hardware Specifics 
