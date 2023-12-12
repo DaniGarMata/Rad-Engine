@@ -16,7 +16,7 @@
 #define WIN_BORDERLESS false
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
-constexpr auto TITLE = "Rad Engine";
+#define TITLE "Rad Engine"
 #define ORGANIZATION "UPC"
 
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
@@ -31,6 +31,10 @@ void log(const char file[], int line, const char* format, ...);
 
 #define ASSETS_FOLDER "Assets/"
 #define CONFIG_FOLDER "Config/"
+#define LIBRARY_FOLDER "Library/"
+
+#define MESH_FILE_EXTENSION ".FcVg_mesh"
+#define TEXTURE_FILE_EXTENSION ".FcVg_texture"
 
 #define RELEASE_ARRAY( x )\
 	{\
