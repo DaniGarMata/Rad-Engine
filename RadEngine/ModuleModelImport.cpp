@@ -426,6 +426,10 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 					fileType = IL_DDS;
 				}
 
+				if (App->moduleFS->GetFileExtension(texturePath) == "tga")
+				{
+					fileType = IL_TGA;
+				}
 				if (ilLoadL(fileType, (const void*)data, file_size))
 				{
 					if (ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))

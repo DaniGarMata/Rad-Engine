@@ -174,6 +174,16 @@ bool MainMenuBar::CreateMenuBar()
 		{
 			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Polyhedron"), "Assets/Primitives/polyhedron_primitive.fbx", "Assets/WhiteTexture.png");
 		}
+		if (ImGui::MenuItem("Street environment"))
+		{
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Street environment"), "Assets/street2.fbx", "Assets/WhiteTexture.png");
+		}
+
+		if (ImGui::MenuItem("ApplyScale_FBX_UnitsScale"))
+		{
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "ApplyScale_FBX_UnitsScale"), "Assets/Primitives/ApplyScale_FBX_UnitsScale.fbx", "Assets/WhiteTexture.png");
+		}
+
 
 		ImGui::EndMenu();
 	}
