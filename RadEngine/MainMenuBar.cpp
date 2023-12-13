@@ -2,7 +2,12 @@
 #include "Globals.h"
 #include "ModuleWindow.h"
 #include "imgui.h"
+#include "IconsFontAwesome5.h"
+
 #include "ModuleSceneIntro.h"
+#include "ModuleCamera3D.h"
+#include "ModuleInput.h"
+
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
 #include "ConfigurationWindow.h"
@@ -35,6 +40,8 @@ bool MainMenuBar::Draw(ImGuiIO& io)
 	CreateMenuBar();
 	ViewMenuBar();
 	HelpMenuBar();
+	PlayPauseMenuBar();
+	ExperimentalFeatures();
 
 	//ImGui::End();
 	ImGui::EndMainMenuBar();
@@ -56,15 +63,33 @@ bool MainMenuBar::FileMenuBar()
 	if (ImGui::BeginMenu("File"))
 	{
 
-		if (ImGui::MenuItem("Save Project"))
+		if (ImGui::MenuItem(ICON_FA_SAVE " Save Configuration"))
 		{
 			App->save_load->saveConfigurationTrigger = true;
 		}
-		if (ImGui::MenuItem("Load Project"))
+		if (ImGui::MenuItem(ICON_FA_FILE_UPLOAD " Load Configuration"))
 		{
 			App->save_load->loadConfigurationTrigger = true;
 		}
-		if (ImGui::MenuItem("Exit"))
+		ImGui::Separator();
+		if (App->input->singleTextureLoaded == true)
+		{
+			ImGui::Text(ICON_FA_EXCLAMATION_TRIANGLE " Cannot Save or load Scene.\nYou have loaded an alone \ntexture as game object.");
+		}
+		else if (App->input->singleTextureLoaded == false)
+		{
+			if (ImGui::MenuItem(ICON_FA_SAVE " Save Scene"))
+			{
+				App->save_load->saveSceneTrigger = true;
+			}
+			if (ImGui::MenuItem(ICON_FA_FILE_UPLOAD " Load Scene"))
+			{
+				App->save_load->loadSceneTrigger = true;
+
+			}
+		}
+		ImGui::Separator();
+		if (ImGui::MenuItem(ICON_FA_DOOR_OPEN " Exit"))
 		{
 			App->appExit = true;
 		}
@@ -81,28 +106,33 @@ bool MainMenuBar::EditMenuBar()
 
 	if (ImGui::BeginMenu("Edit"))
 	{
-		if (ImGui::MenuItem("Cut"))
+		if (ImGui::MenuItem(ICON_FA_CUT " Cut"))
 		{
 
 		}
-		if (ImGui::MenuItem("Copy"))
+		if (ImGui::MenuItem(ICON_FA_COPY " Copy"))
 		{
 
 		}
-		if (ImGui::MenuItem("Paste"))
+		if (ImGui::MenuItem(ICON_FA_PASTE " Paste"))
 		{
 
 		}
 		ImGui::Separator();
-		if (ImGui::MenuItem("Settings", "", App->moduleUi->configurationWindow->isActive))
+		if (ImGui::MenuItem(ICON_FA_CIRCLE_NOTCH " Settings", "", App->moduleUi->configurationWindow->isActive))
 		{
 			App->moduleUi->configurationWindow->ChangeActive();
 		}
-		if (ImGui::MenuItem("Console", "", App->moduleUi->consoleWindow->isActive))
+		if (ImGui::MenuItem(ICON_FA_WINDOW_RESTORE " Console", "", App->moduleUi->consoleWindow->isActive))
 		{
 			App->moduleUi->consoleWindow->ChangeActive();
 		}
 		ImGui::Separator();
+		if (ImGui::MenuItem("Load Test Model - BakerHouse"))
+		{
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+		}
+		
 
 		ImGui::EndMenu();
 	}
@@ -118,26 +148,31 @@ bool MainMenuBar::CreateMenuBar()
 	{
 		if (ImGui::MenuItem("Cube"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/cube_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cube"), "Assets/Primitives/cube_primitive.fbx", "Assets/WhiteTexture.png");
 		}
 		if (ImGui::MenuItem("Sphere"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/sphere_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Sphere"), "Assets/Primitives/sphere_primitive.fbx", "Assets/WhiteTexture.png");
 		}
-
+		if (ImGui::MenuItem("Cone"))
+		{
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cone"), "Assets/Primitives/cone_primitive.fbx", "Assets/WhiteTexture.png");
+		}
 		if (ImGui::MenuItem("Pyramid"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/pyramid_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Pyramid"), "Assets/Primitives/pyramid_primitive.fbx", "Assets/WhiteTexture.png");
 		}
 		if (ImGui::MenuItem("Cylinder"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/cylinder_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cylinder"), "Assets/Primitives/cylinder_primitive.fbx", "Assets/WhiteTexture.png");
 		}
-		
-		
-		if (ImGui::MenuItem("BakerHouse"))
+		if (ImGui::MenuItem("Torus"))
 		{
-			App->modelImport->LoadModel_Textured("Assets/BakerHouse.fbx", "Assets/Baker_House.png");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Torus"), "Assets/Primitives/torus_primitive.fbx", "Assets/WhiteTexture.png");
+		}
+		if (ImGui::MenuItem("Polyhedron Ball"))
+		{
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Polyhedron"), "Assets/Primitives/polyhedron_primitive.fbx", "Assets/WhiteTexture.png");
 		}
 
 		ImGui::EndMenu();
@@ -155,7 +190,7 @@ bool MainMenuBar::ViewMenuBar()
 		
 		if (ImGui::Checkbox("Wireframe Mode", &App->renderer3D->wireframeMode))
 		{
-			//App->renderer3D->wireframeMode = !App->renderer3D->wireframeMode; Not needed (the change of state is done up on the if statement if (ImGui::Checkbox("Wireframe Mode", &App->renderer3D->wireframeMode))
+			
 		}
 		if (ImGui::Checkbox("Disable Textures", &App->renderer3D->texturesOFF))
 		{
@@ -173,10 +208,6 @@ bool MainMenuBar::ViewMenuBar()
 		{
 
 		}
-		//if (ImGui::Checkbox("Show Windows Console", &App->renderer3D->showConsole))
-		//{
-		//
-		//}
 
 		ImGui::EndMenu();
 	}
@@ -188,16 +219,78 @@ bool MainMenuBar::HelpMenuBar()
 {
 	bool ret = true;
 	
-	if (ImGui::BeginMenu("Help",true))
+	if (ImGui::BeginMenu("Help"))
 	{
-		if (ImGui::MenuItem("Go to: https://github.com/DaniGarMata/Rad-Engine/issues"))
+		if (ImGui::MenuItem(ICON_FA_INFO_CIRCLE " Go to: https://github.com/DaniGarMata/Rad-Engine"))
 		{
-			App->OpenBrowserWebPage("https://github.com/DaniGarMata/Rad-Engine/issues");
+			App->OpenBrowserWebPage("https://github.com/DaniGarMata/Rad-Engine");
 		}
 
-		if (ImGui::MenuItem("About", "", App->moduleUi->aboutWindow->isActive))
+		if (ImGui::MenuItem(ICON_FA_INFO_CIRCLE " About", "", App->moduleUi->aboutWindow->isActive))
 		{
 			App->moduleUi->aboutWindow->ChangeActive();
+
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::PlayPauseMenuBar()
+{
+	bool ret = true;
+
+	if (ImGui::BeginMenu("Play/Stop", true))
+	{
+		if (ImGui::MenuItem(ICON_FA_PLAY " Play"))
+		{
+			counterON = true;
+		}
+
+		if (ImGui::MenuItem(ICON_FA_STOP " Stop"))
+		{
+			counterON = false;
+		}
+
+		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
+		{
+			sceneTimer = 0;
+		}
+
+		ImGui::Separator();
+
+		ImGui::Text("\n Game time: %i \n", sceneTimer);
+
+		if (counterON == true)
+		{
+			sceneTimer++;
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::ExperimentalFeatures()
+{
+	bool ret = true;
+
+	if (ImGui::BeginMenu("Experimental features toggling"))
+	{
+		ImGui::Text(ICON_FA_EXCLAMATION_TRIANGLE " WARNING!");
+		ImGui::Text("Features in this section \nin spite of being fully implemented, \nthey are quite buggy and may cause \nunnexpected results.\n");
+		ImGui::Separator();
+
+		if (ImGui::Checkbox("Enable Mouse Picking", &App->camera->mousePickExpFeatureActivated))
+		{
+
+		}
+
+		if (ImGui::Checkbox("Enable Mesh Transformations", &App->camera->transformExpFeatureActivated))
+		{
 
 		}
 

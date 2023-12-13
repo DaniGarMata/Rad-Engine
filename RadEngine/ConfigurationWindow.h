@@ -2,7 +2,7 @@
 #define _CONFIGURATIONWINDOW_H_
 
 #include "ImGuiWindowBase.h"
-#include "parson.h"
+//#include "parson.h"
 
 #define MAX_HISTOGRAM_SIZE 100
 
@@ -33,7 +33,6 @@ private:
 	bool AnotherHeader();
 	bool FPSHeader();
 	bool HardwareHeader();
-	
 
 private:
 
@@ -52,9 +51,6 @@ private:
 	int fps;
 	float fpsData[MAX_HISTOGRAM_SIZE];
 	float msData[MAX_HISTOGRAM_SIZE];
-
-	
-
 };
 
 #endif // !_CONFIGURATIONWINDOW_H_

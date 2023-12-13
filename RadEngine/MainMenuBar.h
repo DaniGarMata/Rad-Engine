@@ -23,9 +23,13 @@ private:
 	bool CreateMenuBar();
 	bool ViewMenuBar();
 	bool HelpMenuBar();
+	bool PlayPauseMenuBar();
+	bool ExperimentalFeatures();
 
 private:
 	
+	uint sceneTimer = 0;
+	bool counterON = false;
 };
 
 #endif 

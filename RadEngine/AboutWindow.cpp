@@ -52,7 +52,7 @@ bool AboutWindow::AboutHeader()
 			used with links to their web
 			○ Full text of the license*/
 
-	ImGui::Text("RadEngine");
+	ImGui::Text("Rad Engine V0.5");
 	ImGui::Spacing();
 
 	ImGui::Bullet();
@@ -120,7 +120,7 @@ bool AboutWindow::AboutHeader()
 	ImGui::Text("MIT License");
 	ImGui::Spacing();
 	ImGui::Spacing();
-	ImGui::Text("Copyright (c) 2023 - DaniGarMata, Oga29 (LOL its uni project what kind of freaking license are you talking about)");
+	ImGui::Text("Copyright (c) 2023 - DaniGarMata, Oga29");
 	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::TextWrapped("Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and /or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: ");
