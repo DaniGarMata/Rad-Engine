@@ -22,7 +22,15 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 
 	//App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
-	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Street environment"), "Assets/steet.fbx", "Assets/WhiteTexture.png");
+	//App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Street environment"), "Assets/steet.fbx", "Assets/Building_V01_C.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "house1"), "Assets/house1.fbx", "Assets/building_016_c.tga");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "house2"), "Assets/house2.fbx", "Assets/Building_V01_C.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "house3"), "Assets/house3.fbx", "Assets/building_025_c.tga");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "house4"), "Assets/house4.fbx", "Assets/building05 _c.tga");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "house5"), "Assets/house5.fbx", "Assets/Building_V02_C.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "house6"), "Assets/house6.fbx", "Assets/building 06_ c.tga");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "house7"), "Assets/house7.fbx", "Assets/building03_c.tga");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "road"), "Assets/road.fbx", "Assets/WhiteTexture.png");
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 	return ret;
