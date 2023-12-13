@@ -1,31 +1,20 @@
 #include "ModuleTransformComponent.h"
 #include "ModuleGameObject.h"
+#include "Component.h"
 
-TransformComponent::TransformComponent()
+TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TRANSFORM, "Transform")
 {
-	updateWorld = false;	
+	
 
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				owner = App->moduleGameObject->objects[i];
+	ComponentOwner = base;
 
-				position = { 0,0,0 };
-				
-			}
-		}
-	}
-
+	updateWorld = false;
 	localTransform = float4x4::identity;
 	worldTransform = float4x4::identity;
 
 	localTransform.Decompose(position, rotation, scale);
 
-	
-	localEulerRotation = rotation.ToEulerXYZ();	
+	localEulerRotation = rotation.ToEulerXYZ();
 	
 }
 
@@ -126,21 +115,20 @@ void TransformComponent::SetLocalEulerRotation(float3 euler)
 
 void TransformComponent::SetChildsAsDirty()
 {
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+
+	if (ComponentOwner->childs.empty())
+		return;	
+
+	for (uint i = 0; i < ComponentOwner->childs.size(); ++i)
 	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+		TransformComponent* childTransform = ComponentOwner->childs[i]->GetTransformComponent();
+
+		if (childTransform != nullptr)
 		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				owner = App->moduleGameObject->objects[i];
-				i = App->moduleGameObject->objects.size();
-				j = App->moduleGameObject->objects[i].meshes.size();
-			}
+			childTransform->updateWorld = true;
+			childTransform->SetChildsAsDirty();
 		}
 	}
-	
-	if (owner.children.empty())
-		return;
 }
 
 void TransformComponent::SetWorldPosition(const float3& newPosition)
@@ -190,72 +178,75 @@ void TransformComponent::UpdateLocalTransform()
 
 void TransformComponent::UpdateWorldTransform()
 {
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				owner = App->moduleGameObject->objects[i];
-				i = App->moduleGameObject->objects.size();
-				j = App->moduleGameObject->objects[i].meshes.size();
-			}
-		}
-	}
 
-	if (owner.parent != nullptr)
-	{
-		for (int i = 0; i < owner.parent->meshes.size(); i++)
-		{
-			worldTransform = owner.parent->meshes[i].transform->worldTransform * localTransform;
-		}
-	}
-	else
-	{
-		for (int i = 0; i < owner.parent->meshes.size(); i++)
-		{
-			worldTransform = localTransform;
-		}
-	}
 	
+	worldTransform = (ComponentOwner->parent != nullptr ) ? ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform : localTransform;
 
 	SetChildsAsDirty();
+	
 
 	updateWorld = false;
 }
 
 void TransformComponent::SyncLocalToWorld()
 {
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				owner = App->moduleGameObject->objects[i];
-				i = App->moduleGameObject->objects.size();
-				j = App->moduleGameObject->objects[i].meshes.size();
-			}
-		}
-	}
-
-	if (owner.parent != nullptr)
-	{
-		for (int i = 0; i < owner.parent->meshes.size(); i++)
-		{
-			localTransform = owner.parent->meshes[i].transform->worldTransform.Inverted() * worldTransform;
-		}
-	}
-	else
-	{
-		
-		localTransform = worldTransform;
-		
-	}	
 	
-	SetLocalTransform(localTransform);	
+
+	localTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetTransformComponent()->worldTransform.Inverted() * worldTransform : worldTransform;
+
+
+	SetLocalTransform(localTransform);
 
 	SetChildsAsDirty();
+
+	
+}
+
+bool TransformComponent::SaveComponent(int positionInList)
+{
+	std::string listPosition = std::to_string(positionInList);
+
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.X").c_str(), position.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.Y").c_str(), position.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.Z").c_str(), position.z);
+
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.X").c_str(), rotation.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.Y").c_str(), rotation.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.Z").c_str(), rotation.z);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.W").c_str(), rotation.w);
+
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.X").c_str(), scale.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.Y").c_str(), scale.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.Z").c_str(), scale.z);
+	
+
+	return true;
+}
+
+bool TransformComponent::LoadComponent(int positionInList)
+{
+	std::string listPosition = std::to_string(positionInList);
+
+	position.x = json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.X").c_str());
+	position.y = json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.Y").c_str());
+	position.z = json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.Z").c_str());
+			   
+	this->SetWorldPosition(position);
+
+	rotation.x = json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.X").c_str());
+	rotation.y = json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.Y").c_str());
+	rotation.z = json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.Z").c_str());
+	rotation.w = json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.W").c_str());
+
+	this->SetWorldRotation(rotation);
+
+	scale.x	= json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.X").c_str());
+	scale.y	= json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.Y").c_str());
+	scale.z	= json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.Z").c_str());
+
+	this->SetWorldScale(scale);
+
+	return true;
 }
 
 void TransformComponent::SetPosition(float x, float y, float z)
@@ -264,19 +255,31 @@ void TransformComponent::SetPosition(float x, float y, float z)
 	UpdateLocalTransform();
 }
 
-void TransformComponent::SetRotation(float x, float y, float z, float w)
+void TransformComponent::SetRotation(const float3& newRotation)
 {
-	rotation.Set(x, y, z, w);
-	localEulerRotation = rotation.ToEulerXYZ();
+	rotation = Quat::FromEulerXYZ(newRotation.x, newRotation.y, newRotation.z);
+	localEulerRotation = newRotation;
 
 	UpdateLocalTransform();
 }
 
-void TransformComponent::SetScale(float x, float y, float z)
+void TransformComponent::SetScale(const float3& newScale)
 {
-	scale.x = (x != 0.0f) ? x : 0.5f;
-	scale.y = (y != 0.0f) ? y : 0.5f;
-	scale.z = (z != 0.0f) ? z : 0.5f;
+	
+	if (newScale.x == 0.0f || newScale.y == 0.0f || newScale.z == 0.0f)
+	{
+		float3 mod_scale = float3::one;
+
+		mod_scale.x = (newScale.x == 0.0f) ? 0.01f : newScale.x;
+		mod_scale.y = (newScale.y == 0.0f) ? 0.01f : newScale.y;
+		mod_scale.z = (newScale.z == 0.0f) ? 0.01f : newScale.z;
+
+		scale = mod_scale;
+	}
+	else
+	{
+		scale = newScale;
+	}
 
 	UpdateLocalTransform();
 }

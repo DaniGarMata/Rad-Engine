@@ -40,6 +40,9 @@ public:
 	bool GetFullscreenDesktop();
 	void SetFullscreenDesktop(bool result);
 
+	int GetHeight();
+	int GetWidth();
+
 	void UpdateWindow();
 
 public:
@@ -49,7 +52,7 @@ public:
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
 
-private:
+public:
 
 	bool fullscreen = false;
 	bool resizable = true;

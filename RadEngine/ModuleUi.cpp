@@ -10,6 +10,7 @@
 #include "imgui/imgui_internal.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "imgui/imgui_impl_sdl.h"
+#include "IconsFontAwesome5.h"
 
 
 #include "ModuleUi.h"
@@ -25,6 +26,7 @@
 #include "ConsoleWindow.h"
 #include "GameObjectsWindow.h"
 #include "ObjectsInspectorWindow.h"
+#include "RessourcesWindow.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),
 configurationWindow(new ConfigurationWindow("ConfigurationWindow", true)),
@@ -32,7 +34,8 @@ mainMenuBar(new MainMenuBar("MainMenuBar", true)),
 aboutWindow(new AboutWindow("AboutWindow", false)),
 consoleWindow(new ConsoleWindow("ConsoleWindow", true)),
 gameObjectsWindow(new GameObjectsWindow("GameObjectsWindow", true)),
-objectsInspectorWindow(new ObjectsInspectorWindow("ObjectsInspectorWindow", true))
+objectsInspectorWindow(new ObjectsInspectorWindow("ObjectsInspectorWindow", true)),
+ressourcesWindow(new RessourcesWindow("Ressources", true))
 {
    AddImGuiWindow(configurationWindow);
    AddImGuiWindow(mainMenuBar);
@@ -40,6 +43,7 @@ objectsInspectorWindow(new ObjectsInspectorWindow("ObjectsInspectorWindow", true
    AddImGuiWindow(consoleWindow);
    AddImGuiWindow(gameObjectsWindow);
    AddImGuiWindow(objectsInspectorWindow);
+   AddImGuiWindow(ressourcesWindow);
 
 }
 
@@ -61,6 +65,20 @@ bool ModuleUi::Start()
     App->moduleUi->configurationWindow->Vendor = (const char*)glGetString(GL_VENDOR);
     App->moduleUi->configurationWindow->GPU_Model = (const char*)glGetString(GL_RENDERER);
     App->moduleUi->configurationWindow->Drivers = (const char*)glGetString(GL_VERSION);
+
+    ImGuiIO& io = ImGui::GetIO();
+    io.Fonts->AddFontDefault();
+
+    // merge in icons from Font Awesome
+    static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_16_FA, 0 };
+    ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.PixelSnapH = true;
+    io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 16.0f, &icons_config, icons_ranges);
+
+    //FONT_ICON_FILE_NAME_FAR <-- option 1
+    //FONT_ICON_FILE_NAME_FAS <-- option 2
+    
+    // use FONT_ICON_FILE_NAME_FAR if you want regular instead of solid
+
 
 	return true;
 }
@@ -115,11 +133,6 @@ update_status ModuleUi::PostUpdate(float dt)
     }
     
     RenderImGuiWindows();
-   
-
-    //ImGui::Render();  <-- Not needed - está dentro de RenderImGuiWindows();
-    //ImGui::EndFrame();  <-- Not needed - está dentro de RenderImGuiWindows();
-    //ImGui::UpdatePlatformWindows();  <-- Not needed - está dentro de RenderImGuiWindows();
 
     return ret;
 }

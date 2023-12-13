@@ -25,9 +25,9 @@ public:
 
 	void OnResize(int width, int height);
 
-	void RenderModels(); //Renders models (textures and meshes)
-
 	void SetVsync(bool value);
+
+	void RenderGameObjects(ModuleGameObject gameObject, float3 position);
 
 public:
 
@@ -42,6 +42,9 @@ public:
 	bool disableAO = false;
 	bool vsyncEnabled = VSYNC;
 	//bool showConsole = false;
+
+	uint checkerTextureID;
+	bool checkerTextureON;
 
 	float vertices[9] = {
 	-0.5f, -0.5f, 0.0f,
