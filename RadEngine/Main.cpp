@@ -94,8 +94,8 @@ int main(int argc, char ** argv)
 				const SDL_MessageBoxData messageboxdata = {
 						SDL_MESSAGEBOX_WARNING, /* .flags */
 						NULL, /* .window */
-						" Secure App closing - so you don't loose your work :)", /* .title ¯\_(ツ)_/¯ */
-						"You are about to exit Cetreleopter Engine.\nAll unsaved progress will be lost!!", /* .message ಠ_ಠ */
+						" Don't forget to save", /* .title ¯\_(ツ)_/¯ */
+						"You are about to exit Rad Engine.\nAll unsaved progress will be lost!!", /* .message ಠ_ಠ */
 						SDL_arraysize(buttons), /* .numbuttons */
 						buttons, /* .buttons */
 						&colorScheme /* .colorScheme */
