@@ -34,7 +34,7 @@ GitHub Link: https://github.com/DaniGarMata/Rad-Engine
 
 ### Menus
 File:
-* Save / Load Configuration
+* Save / Load Configuration (it loads the saved configuration after exiting and launching the editor)
 * Save / Load Scene
 * Exit
 
