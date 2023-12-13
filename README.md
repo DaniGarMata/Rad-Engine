@@ -34,15 +34,17 @@ GitHub Link: https://github.com/DaniGarMata/Rad-Engine
 
 ### Menus
 File:
-* Save / Load Project
+* Save / Load Configuration
+* Save / Load Scene
 * Exit
 
 Edit:
 * Cut / Copy / Paste
 * Settings / Console tabs
+* Load Test Model
 
 Create:
-* Create Cube / Sphere / Pyramid / Cylinder / BakerHouse
+* Create Cube / Sphere / Cone / Pyramid / Cylinder / Torus / Polyhedron Ball
 
 View:
 * Wireframe Mode
@@ -55,6 +57,15 @@ Help:
 * GitHub link
 * About tab
 
+Play/Stop:
+* Play
+* Stop
+* Reset
+
+Experimental features toggling
+* Enable Mouse Picking
+* Enable Mesh Transformations
+
 ## Tabs
 GameObject:
 * Select object
@@ -62,7 +73,17 @@ GameObject:
 GameObjects Inspector:
 * Mesh
 * Transform
+     * Translate
+     * Rotate
+     * Scale
+     * Reset all
 * Texture
+* Camera
+* Hierarchy Options
+
+Assets Tree
+
+Folder Explorer
 
 Settings:
 * Window Settings
