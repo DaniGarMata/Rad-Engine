@@ -1,0 +1,6 @@
+https://github.com/juj/MathGeoLib  MathGeoLib
+https://www.zlib.net/zlib_license.html  SDL
+https://assimp.org Assimp
+https://github.com/ocornut/imgui Imgui
+https://glew.sourceforge.net glew
+https://icculus.org/physfs/ PhysFs
