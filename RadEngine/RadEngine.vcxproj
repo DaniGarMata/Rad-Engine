@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -30,6 +38,12 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -41,11 +55,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;$(WWISESDK)\include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ProjectDir);$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;$(WWISESDK)\include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ProjectDir);$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -55,7 +69,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;$(ProjectDir)/Wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -77,7 +91,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(ProjectDir)physFS\include;$(ProjectDir)/Wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -122,6 +136,7 @@
     <ClInclude Include="imgui\imstb_rectpack.h" />
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="Include_Wwise.h" />
     <ClInclude Include="json\JsonParsing.h" />
     <ClInclude Include="json\parson.h" />
     <ClInclude Include="Light.h" />
@@ -203,6 +218,11 @@
     <ClInclude Include="mathGeoLib\Math\TransformOps.h" />
     <ClInclude Include="mathGeoLib\Math\vec2d.h" />
     <ClInclude Include="mathGeoLib\Time\Clock.h" />
+    <ClInclude Include="mmgr\mmgr.h" />
+    <ClInclude Include="mmgr\nommgr.h" />
+    <ClInclude Include="ModuleAudio.h" />
+    <ClInclude Include="ModuleAudioListenerComponent.h" />
+    <ClInclude Include="ModuleAudioSourceComponent.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ModuleCameraComponent.h" />
@@ -243,6 +263,7 @@
     <ClCompile Include="imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Include_Wwise.cpp" />
     <ClCompile Include="json\JsonParsing.cpp" />
     <ClCompile Include="json\parson.c" />
     <ClCompile Include="Light.cpp" />
@@ -291,6 +312,10 @@
     <ClCompile Include="mathGeoLib\Math\SSEMath.cpp" />
     <ClCompile Include="mathGeoLib\Math\TransformOps.cpp" />
     <ClCompile Include="mathGeoLib\Time\Clock.cpp" />
+    <ClCompile Include="mmgr\mmgr.cpp" />
+    <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleAudioListenerComponent.cpp" />
+    <ClCompile Include="ModuleAudioSourceComponent.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ModuleCameraComponent.cpp" />
@@ -311,6 +336,13 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="RessourcesWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Wwise\IO\Common\AkDefaultLowLevelIODispatcher.cpp" />
+    <ClCompile Include="Wwise\IO\Common\AkFileLocationBase.cpp" />
+    <ClCompile Include="Wwise\IO\Common\AkFilePackage.cpp" />
+    <ClCompile Include="Wwise\IO\Common\AkFilePackageLUT.cpp" />
+    <ClCompile Include="Wwise\IO\Win32\AkDefaultIOHookBlocking.cpp" />
+    <ClCompile Include="Wwise\IO\Win32\AkDefaultIOHookDeferred.cpp" />
+    <ClCompile Include="Wwise\IO\Win32\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="mathGeoLib\Geometry\KDTree.inl" />
