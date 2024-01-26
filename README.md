@@ -29,7 +29,7 @@ The following sound effects are played:
 * Train sounds
 * Windows Boot-Up Sound (played from the computer, press 1 to play it again)
   
-Reverb is dynamically added to the train sounds if the main camera is in the tunnel of the demo scene, to simulate the train going through the tunnel. In order to hear the sound without the effect, move the camera along the train tracks until you are out of the tunnel Z-length.
+Reverb is dynamically added to the train sounds if the main camera is in the tunnel ᕕ( ᐛ )ᕗ of the demo scene, to simulate the train going through the tunnel. In order to hear the sound without the effect, move the camera along the train tracks until you are out of the tunnel Z-length.
 
 ---
 ## Engine Functionalities
@@ -39,6 +39,7 @@ Reverb is dynamically added to the train sounds if the main camera is in the tun
 * Tab resizing
 * Tab layout customization
 * Drag and drop feature (supports FBX models and PNG textures)
+* Moving and static objects
 
 ### Camera Controls
 
