@@ -3,7 +3,7 @@
 	<RootPaths>
 		<ProjectRoot>C:\Users\Usuario\Desktop\Oldest version wwise project\</ProjectRoot>
 		<SourceFilesRoot>C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\espag\Desktop\Cetroleopter-Engine\CetroleopterEngine\Game\Library\Sounds\</SoundBanksRoot>
+		<SoundBanksRoot>C:\Users\espag\Desktop\RadEngine\RadEngine\Game\Library\Sounds\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
 		<ExternalSourcesOutputRoot>C:\Users\Usuario\Desktop\Oldest version wwise project\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>

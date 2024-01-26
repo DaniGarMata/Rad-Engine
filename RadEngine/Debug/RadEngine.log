@@ -1,0 +1,276 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CetroleopterEngine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  AboutWindow.cpp
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\mathGeoLib\Geometry\AABB2D.h(135,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Main.cpp
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\mathGeoLib\Geometry\AABB2D.h(135,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\Main.cpp(65,31): warning C4244: '=': conversion from 'Uint64' to 'int', possible loss of data
+  MainMenuBar.cpp
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\mathGeoLib\Geometry\AABB2D.h(135,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\MainMenuBar.cpp(262,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\MainMenuBar.cpp(284,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\MainMenuBar.cpp(298,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\MainMenuBar.cpp(325,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\MainMenuBar.cpp(339,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\MainMenuBar.cpp(350,22): warning C4018: '<': signed/unsigned mismatch
+  ModuleAudio.cpp
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\mathGeoLib\Geometry\AABB2D.h(135,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\ModuleAudio.cpp(154,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\ModuleAudio.cpp(162,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\ModuleAudio.cpp(244,12): warning C4244: 'return': conversion from 'AkGameObjectID' to 'unsigned long', possible loss of data
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\ModuleAudio.cpp(265,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\ModuleAudio.cpp(266,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Polygon.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ostream(414,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ostream(407,1): message : while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)'
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\mathGeoLib\Math\assume.h(126,5): message : see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)' being compiled
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\istream(726): message : see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>' being compiled
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\sstream(775): message : see reference to class template instantiation 'std::basic_iostream<char,std::char_traits<char>>' being compiled
+C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\mathGeoLib\Math\assume.h(113,1): message : see reference to class template instantiation 'std::basic_stringstream<char,std::char_traits<char>,std::allocator<char>>' being compiled
+  Generating Code...
+     Creating library C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\Debug\RadEngine.lib and object C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\Debug\RadEngine.exp
+CommunicationCentral.lib(stdafx.obj) : warning LNK4099: PDB '' was not found with 'CommunicationCentral.lib(stdafx.obj)' or at ''; linking object as if no debug info
+CommunicationCentral.lib(Serializer.obj) : warning LNK4099: PDB '' was not found with 'CommunicationCentral.lib(Serializer.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(stdafx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(stdafx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSinkWasapi.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSinkWasapi.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAudioThread.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAudioThread.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSinkXAudio2.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSinkXAudio2.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSink.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSink.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSinkDirectSound.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSinkDirectSound.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkLEngine.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkLEngine.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkIndexable.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkIndexable.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkConnectedListeners.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkConnectedListeners.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSinkBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSinkBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkThreadedBankMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkThreadedBankMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionSetState.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionSetState.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPathManager.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPathManager.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBankList.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBankList.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkTransitionManager.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkTransitionManager.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMixBusCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMixBusCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAttenuationMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAttenuationMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBusCallbackMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBusCallbackMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBankReader.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBankReader.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkGen3DParams.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkGen3DParams.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionDuck.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionDuck.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAudioLibIndex.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAudioLibIndex.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkTransition.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkTransition.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPlayingMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPlayingMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionSetSwitch.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionSetSwitch.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMonitor.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMonitor.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBehavioralCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBehavioralCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkRTPCSubscriber.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkRTPCSubscriber.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionPlayEvent.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionPlayEvent.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPath.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPath.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkCommon.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkCommon.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkModulator.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkModulator.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPositionRepository.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPositionRepository.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(FileCaptureWriter.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(FileCaptureWriter.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSIS.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSIS.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkDynamicSequencePBI.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkDynamicSequencePBI.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVirtualAcousticsManager.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVirtualAcousticsManager.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkProfile.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkProfile.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionRelease.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionRelease.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkLayerCntr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkLayerCntr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkParameterNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkParameterNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAudioMix.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAudioMix.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkModulatorCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkModulatorCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSoundBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSoundBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkModulatorEngine.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkModulatorEngine.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkEffectsMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkEffectsMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFxBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFxBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAuxBus.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAuxBus.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBankMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBankMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAudioMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAudioMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkLayer.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkLayer.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionExcept.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionExcept.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkModulatorMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkModulatorMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionSeek.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionSeek.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSwitchAware.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSwitchAware.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActorMixer.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActorMixer.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionUseState.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionUseState.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSource.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSource.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkURenderer.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkURenderer.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBytesMem.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBytesMem.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBankCallbackMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBankCallbackMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionBypassFX.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionBypassFX.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMultiPlayNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMultiPlayNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionStop.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionStop.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSettings.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSettings.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkDialogueEvent.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkDialogueEvent.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBus.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBus.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkOutputMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkOutputMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVBAP.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVBAP.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkStreamCacheMgmt.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkStreamCacheMgmt.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkIDStringMap.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkIDStringMap.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPlaylist.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPlaylist.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkModulatorPBIData.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkModulatorPBIData.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSwitchMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSwitchMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFXContext.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFXContext.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkRanSeqCntr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkRanSeqCntr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPBIAware.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPBIAware.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPreparationAware.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPreparationAware.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkRuntimeEnvironmentMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkRuntimeEnvironmentMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionBreak.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionBreak.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkParameterNodeBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkParameterNodeBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkDynamicSequence.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkDynamicSequence.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkEvent.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkEvent.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMarkers.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMarkers.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkStateMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkStateMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkContinuousPBI.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkContinuousPBI.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionMute.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionMute.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkBusCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkBusCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkRegisteredObj.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkRegisteredObj.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkEnvironmentsMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkEnvironmentsMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkLEngine_Common.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkLEngine_Common.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionSetAkProp.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionSetAkProp.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkLEngineCmds.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkLEngineCmds.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAudioLibTimer.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAudioLibTimer.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkRanSeqBaseInfo.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkRanSeqBaseInfo.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkPBI.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkPBI.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkCaptureMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkCaptureMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkContinuationList.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkContinuationList.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionActive.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionActive.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ALBytesMem.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ALBytesMem.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkContainerBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkContainerBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAudioLib.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAudioLib.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionPlayAndContinue.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionPlayAndContinue.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFXMemAlloc.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFXMemAlloc.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSwitchCntr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSwitchCntr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionResume.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionResume.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMixConnection.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMixConnection.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionPlay.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionPlay.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMath.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMath.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkRTPCMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkRTPCMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkState.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkState.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFileParserBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFileParserBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(Ak3DListener.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(Ak3DListener.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkDuckItem.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkDuckItem.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkStateAware.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkStateAware.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSpeakerPan.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSpeakerPan.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionPause.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionPause.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkAction.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkAction.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSound.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSound.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkDecisionTree.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkDecisionTree.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkScopedRtpcObj.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkScopedRtpcObj.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkGameObject.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkGameObject.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionEvent.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionEvent.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkRegistryMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkRegistryMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionResetPlaylist.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionResetPlaylist.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionSetGameParameter.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionSetGameParameter.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionTrigger.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionTrigger.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkActionSetValue.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkActionSetValue.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkChunkRing.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkChunkRing.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiDeviceCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiDeviceCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiDeviceMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiDeviceMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiClipCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiClipCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiClipMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiClipMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiBaseMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiBaseMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiBaseCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiBaseCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiParseSe.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiParseSe.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMidiNoteCtx.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMidiNoteCtx.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ActorMixerProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ActorMixerProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AuxBusProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AuxBusProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ObjectProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ObjectProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(BusProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(BusProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(StateMgrProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(StateMgrProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ActionProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ActionProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(BaseBusConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(BaseBusConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ALMonitorProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ALMonitorProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ParameterNodeProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ParameterNodeProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ProxyFrameworkConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ProxyFrameworkConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(StateProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(StateProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(DialogueEventProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(DialogueEventProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(SwitchContainerProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(SwitchContainerProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(FeedbackBusProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(FeedbackBusProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(LayerContainerProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(LayerContainerProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(LayerProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(LayerProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ParameterableProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ParameterableProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(RendererProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(RendererProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(VirtualAcousticsProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(VirtualAcousticsProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(RanSeqContainerProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(RanSeqContainerProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(MidiDeviceMgrProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(MidiDeviceMgrProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(FeedbackNodeProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(FeedbackNodeProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(ModulatorProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(ModulatorProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(FxBaseProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(FxBaseProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AttenuationProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AttenuationProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(EventProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(EventProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(SoundProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(SoundProxyConnected.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(StateMgrProxyLocal.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(StateMgrProxyLocal.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(CommandDataSerializer.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(CommandDataSerializer.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(RendererProxyLocal.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(RendererProxyLocal.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(CommandData.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(CommandData.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLFilterNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLFilterNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLMixBusNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLMixBusNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMixerSIMD.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMixerSIMD.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLFilterNodeOutOfPlace.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLFilterNodeOutOfPlace.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcBankADPCM.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcBankADPCM.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcLpFilter.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcLpFilter.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkADPCMCodec.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkADPCMCodec.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcPhysModel.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcPhysModel.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPL3dMixable.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPL3dMixable.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcFilePCM.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcFilePCM.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcBankPCM.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcBankPCM.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLLPFNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLLPFNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLFilterNodeBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLFilterNodeBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcFileADPCM.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcFileADPCM.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLPitchNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLPitchNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkMixer.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkMixer.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLSrcCbxNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLSrcCbxNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLVolAutmNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLVolAutmNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkLPFCommon.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkLPFCommon.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkResamplerSIMD.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkResamplerSIMD.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkLEngine_SoftwarePipeline.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkLEngine_SoftwarePipeline.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkVPLSrcNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkVPLSrcNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkSrcFileBase.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkSrcFileBase.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkResamplerCommon.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkResamplerCommon.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkResampler.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkResampler.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFeedbackNode.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFeedbackNode.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFeedbackStructs.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFeedbackStructs.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFeedbackMgr.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFeedbackMgr.obj)' or at ''; linking object as if no debug info
+AkSoundEngine.lib(AkFeedbackBus.obj) : warning LNK4099: PDB '' was not found with 'AkSoundEngine.lib(AkFeedbackBus.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(stdafx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(stdafx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(TrackProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(TrackProxyConnected.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(SegmentProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(SegmentProxyConnected.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(ProxyMusic.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(ProxyMusic.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(MusicNodeProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(MusicNodeProxyConnected.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(MusicTransAwareProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(MusicTransAwareProxyConnected.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(MusicSwitchProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(MusicSwitchProxyConnected.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(MusicRanSeqProxyConnected.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(MusicRanSeqProxyConnected.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkSwitchTrackInfo.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkSwitchTrackInfo.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkSegmentChain.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkSegmentChain.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkSegmentCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkSegmentCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicSegment.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicSegment.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicPBI.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicPBI.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMatrixSequencer.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMatrixSequencer.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMatrixAwareCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMatrixAwareCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkScheduleWindow.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkScheduleWindow.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicTransAware.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicTransAware.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicRenderer.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicRenderer.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkContextualMusicSequencer.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkContextualMusicSequencer.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicSwitchCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicSwitchCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkSegmentInfoRepository.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkSegmentInfoRepository.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkSequenceCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkSequenceCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkChildCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkChildCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicRanSeqCntr.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicRanSeqCntr.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkSequencableSegmentCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkSequencableSegmentCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkSubTrackCtx.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkSubTrackCtx.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicSwitchCntr.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicSwitchCntr.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkRSIterator.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkRSIterator.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicBank.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicBank.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicTrack.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicTrack.obj)' or at ''; linking object as if no debug info
+AkMusicEngine.lib(AkMusicNode.obj) : warning LNK4099: PDB '' was not found with 'AkMusicEngine.lib(AkMusicNode.obj)' or at ''; linking object as if no debug info
+AkMemoryMgr.lib(stdafx.obj) : warning LNK4099: PDB '' was not found with 'AkMemoryMgr.lib(stdafx.obj)' or at ''; linking object as if no debug info
+AkMemoryMgr.lib(tlsf.obj) : warning LNK4099: PDB '' was not found with 'AkMemoryMgr.lib(tlsf.obj)' or at ''; linking object as if no debug info
+AkMemoryMgr.lib(AkMemoryMgrBase.obj) : warning LNK4099: PDB '' was not found with 'AkMemoryMgr.lib(AkMemoryMgrBase.obj)' or at ''; linking object as if no debug info
+AkMemoryMgr.lib(AkMemoryMgr.obj) : warning LNK4099: PDB '' was not found with 'AkMemoryMgr.lib(AkMemoryMgr.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(stdafx.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(stdafx.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(AkIOThread.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(AkIOThread.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(AkIOMemMgr.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(AkIOMemMgr.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(AkDeviceBase.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(AkDeviceBase.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(AkDeviceBlocking.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(AkDeviceBlocking.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(AkTransferDeferred.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(AkTransferDeferred.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(AkDeviceDeferredLinedUp.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(AkDeviceDeferredLinedUp.obj)' or at ''; linking object as if no debug info
+AkStreamMgr.lib(AkStreamMgr.obj) : warning LNK4099: PDB '' was not found with 'AkStreamMgr.lib(AkStreamMgr.obj)' or at ''; linking object as if no debug info
+  RadEngine.vcxproj -> C:\Users\espag\Downloads\Er\Cetroleopter-Engine-0.75\CetroleopterEngine\Debug\RadEngine.exe

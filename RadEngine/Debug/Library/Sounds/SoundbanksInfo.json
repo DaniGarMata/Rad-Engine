@@ -1,0 +1,114 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "11",
+  "SoundbankVersion": "125",
+  "RootPaths": {
+   "ProjectRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\",
+   "SourceFilesRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\Usuario\\Desktop\\Cetroleopter-Engine\\CetroleopterEngine\\Game\\Library\\Sounds\\",
+   "ExternalSourcesInputFile": "",
+   "ExternalSourcesOutputRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\GeneratedSoundBanks\\Windows\\"
+  },
+  "DialogueEvents": [],
+  "StreamedFiles": [],
+  "MediaFilesNotInAnyBank": [],
+  "SoundBanks": [
+   {
+    "Id": "1355168291",
+    "Language": "SFX",
+    "ObjectPath": "Init",
+    "ShortName": "Init",
+    "Path": "Init.bnk"
+   },
+   {
+    "Id": "3161415855",
+    "Language": "SFX",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Event",
+    "ShortName": "Event",
+    "Path": "Event.bnk"
+   },
+   {
+    "Id": "3991942870",
+    "Language": "SFX",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
+    "ShortName": "Music",
+    "Path": "Music.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "2429473254",
+      "Name": "MusicLoopPause",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopPause"
+     },
+     {
+      "Id": "2010092982",
+      "Name": "MusicLoopPlay",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopPlay"
+     },
+     {
+      "Id": "1319684385",
+      "Name": "MusicLoopResume",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopResume"
+     },
+     {
+      "Id": "2740630344",
+      "Name": "MusicLoopStop",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopStop"
+     },
+     {
+      "Id": "3572826029",
+      "Name": "TrainPause",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainPause"
+     },
+     {
+      "Id": "1513415671",
+      "Name": "TrainPlay",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainPlay"
+     },
+     {
+      "Id": "3760876308",
+      "Name": "TrainResume",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainResume"
+     },
+     {
+      "Id": "201857829",
+      "Name": "TrainStop",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainStop"
+     },
+     {
+      "Id": "270908044",
+      "Name": "Windows",
+      "ObjectPath": "\\Events\\Default Work Unit\\Windows"
+     }
+    ],
+    "IncludedMemoryFiles": [
+     {
+      "Id": "275830813",
+      "Language": "SFX",
+      "ShortName": "Heartache.wav",
+      "Path": "SFX\\Heartache_1C9C67B2.wem"
+     },
+     {
+      "Id": "470945920",
+      "Language": "SFX",
+      "ShortName": "Wizard.wav",
+      "Path": "SFX\\Wizard_1C9C67B2.wem"
+     },
+     {
+      "Id": "523756601",
+      "Language": "SFX",
+      "ShortName": "windows_on.wav",
+      "Path": "SFX\\windows_on_1C9C67B2.wem"
+     },
+     {
+      "Id": "720752218",
+      "Language": "SFX",
+      "ShortName": "train_sound.wav",
+      "Path": "SFX\\train_sound_1C9C67B2.wem"
+     }
+    ]
+   }
+  ]
+ }
+}

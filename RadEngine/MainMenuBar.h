@@ -26,10 +26,11 @@ private:
 	bool PlayPauseMenuBar();
 	bool ExperimentalFeatures();
 
-private:
+public:
 	
-	uint sceneTimer = 0;
+	//uint sceneTimer = 0;
 	bool counterON = false;
+	bool wasMusicPaused = false;
 };
 
 #endif 

@@ -5,11 +5,11 @@
   "SchemaVersion": "11",
   "SoundbankVersion": "125",
   "RootPaths": {
-   "ProjectRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\",
-   "SourceFilesRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\.cache\\Windows\\",
-   "SoundBanksRoot": "C:\\Users\\Usuario\\Desktop\\Cetroleopter-Engine\\CetroleopterEngine\\Game\\Library\\Sounds\\",
-   "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\GeneratedSoundBanks\\Windows\\"
+    "ProjectRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\",
+    "SourceFilesRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\.cache\\Windows\\",
+    "SoundBanksRoot": "C:\\Users\\Usuario\\Desktop\\RadEngine\\RadEngine\\Game\\Library\\Sounds\\",
+    "ExternalSourcesInputFile": "",
+    "ExternalSourcesOutputRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\GeneratedSoundBanks\\Windows\\"
   },
   "DialogueEvents": [],
   "StreamedFiles": [],
@@ -83,12 +83,12 @@
      }
     ],
     "IncludedMemoryFiles": [
-     {
-      "Id": "275830813",
-      "Language": "SFX",
-      "ShortName": "Heartache.wav",
-      "Path": "SFX\\Heartache_1C9C67B2.wem"
-     },
+      {
+        "Id": "275830813",
+        "Language": "SFX",
+        "ShortName": "Heartache.wav",
+        "Path": "SFX\\CommonMTF_8E324C96.wem"
+      },
      {
       "Id": "470945920",
       "Language": "SFX",

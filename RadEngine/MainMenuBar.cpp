@@ -14,6 +14,12 @@
 #include "ModuleModelImport.h"
 #include "ModuleSaveLoad.h"
 #include "ConsoleWindow.h"
+#include "ModuleSceneIntro.h"
+
+#include "ModuleAudio.h"
+#include "ModuleAudioSourceComponent.h"
+#include "Game/Library/Sounds/Wwise_IDs.h"
+
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
 {
@@ -132,6 +138,7 @@ bool MainMenuBar::EditMenuBar()
 		{
 			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
 		}
+	
 		
 
 		ImGui::EndMenu();
@@ -174,7 +181,6 @@ bool MainMenuBar::CreateMenuBar()
 		{
 			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Polyhedron"), "Assets/Primitives/polyhedron_primitive.fbx", "Assets/WhiteTexture.png");
 		}
-
 
 		ImGui::EndMenu();
 	}
@@ -247,26 +253,106 @@ bool MainMenuBar::PlayPauseMenuBar()
 	{
 		if (ImGui::MenuItem(ICON_FA_PLAY " Play"))
 		{
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+				{
+					if (App->scene_intro->sceneTimer > 0)
+					{
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINRESUME);
+					}
+					else if (App->scene_intro->sceneTimer == 0)
+					{
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
+					}
+				}
+			}
+
 			counterON = true;
 		}
 
 		if (ImGui::MenuItem(ICON_FA_STOP " Stop"))
 		{
 			counterON = false;
+
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+				{
+					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPAUSE);
+				}
+			}
 		}
 
 		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
 		{
-			sceneTimer = 0;
+			App->scene_intro->sceneTimer = 0;
+			App->scene_intro->trainTimer = 0;
+
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+				{
+					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINSTOP);
+					if (counterON == true)
+					{
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
+					}
+				}
+			}
 		}
 
 		ImGui::Separator();
 
-		ImGui::Text("\n Game time: %i \n", sceneTimer);
+		ImGui::Text("\n Game time: %i \n", App->scene_intro->sceneTimer);
 
-		if (counterON == true)
+		//if (counterON == true)
+		//{
+		//	App->scene_intro->sceneTimer++;
+		//	App->scene_intro->trainTimer++;
+		//}
+
+		ImGui::Separator();
+
+		if (ImGui::MenuItem(ICON_FA_PLAY " Play BG music"))
 		{
-			sceneTimer++;
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+				{
+					if(wasMusicPaused == false) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPPLAY);
+					else if (wasMusicPaused == true) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPRESUME);
+				}
+			}
+			wasMusicPaused = false;
+		}
+
+		if (ImGui::MenuItem(ICON_FA_STOP " Stop BG music"))
+		{
+			wasMusicPaused = true;
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+				{
+					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPPAUSE);
+				}
+			}
+		}
+
+		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset BG music"))
+		{
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+				{
+					if (wasMusicPaused == false)
+					{
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPSTOP);
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPPLAY);
+					}
+					else if(wasMusicPaused == true) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPSTOP);
+				}
+			}
 		}
 
 		ImGui::EndMenu();

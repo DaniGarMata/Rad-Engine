@@ -3,7 +3,7 @@
 	<RootPaths>
 		<ProjectRoot>C:\Users\Usuario\Desktop\Oldest version wwise project\</ProjectRoot>
 		<SourceFilesRoot>C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\Usuario\Desktop\SFX\</SoundBanksRoot>
+		<SoundBanksRoot>C:\Users\espag\OneDrive\Documentos\GitHub\Rad-Engine\RadEngine\Game\Library\Sounds\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
 		<ExternalSourcesOutputRoot>C:\Users\Usuario\Desktop\Oldest version wwise project\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
@@ -39,7 +39,7 @@
 			<IncludedMemoryFiles>
 				<File Id="275830813" Language="SFX">
 					<ShortName>CommonMTF.wav</ShortName>
-					<Path>SFX\CommonMTF.wem</Path>
+					<Path>CommonMTF_8E324C96.wem</Path>
 				</File>
 				<File Id="470945920" Language="SFX">
 					<ShortName>Wizard.wav</ShortName>

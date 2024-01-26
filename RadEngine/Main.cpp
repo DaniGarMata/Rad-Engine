@@ -19,6 +19,12 @@ int main(int argc, char ** argv)
 {
 	LOG("Starting engine '%s'...", TITLE);
 
+	const int FPS = 60;
+	const int frameDelay = 1000 / FPS;
+
+	Uint64 frameStart;
+	int frameTime;
+
 	int main_return = EXIT_FAILURE;
 	main_states state = MAIN_CREATION;
 	Application* App = NULL;
@@ -52,7 +58,16 @@ int main(int argc, char ** argv)
 
 		case MAIN_UPDATE:
 		{
+			frameStart = SDL_GetTicks();
+
 			int update_return = App->Update();
+
+			frameTime = SDL_GetTicks() - frameStart;
+
+			if (frameDelay > frameTime)
+			{
+				SDL_Delay(frameDelay - frameTime);
+			}
 
 			if (App->AppTitleScreenFull == false)
 			{
@@ -94,8 +109,8 @@ int main(int argc, char ** argv)
 				const SDL_MessageBoxData messageboxdata = {
 						SDL_MESSAGEBOX_WARNING, /* .flags */
 						NULL, /* .window */
-						" Don't forget to save", /* .title ¯\_(ツ)_/¯ */
-						"You are about to exit Rad Engine.\nAll unsaved progress will be lost!!", /* .message ಠ_ಠ */
+						" Secure App closing - so you don't loose your work :)", /* .title ¯\_(ツ)_/¯ */
+						"You are about to exit RadEngine.\nAll unsaved progress will be lost!!", /* .message ಠ_ಠ */
 						SDL_arraysize(buttons), /* .numbuttons */
 						buttons, /* .buttons */
 						&colorScheme /* .colorScheme */
