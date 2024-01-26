@@ -2,10 +2,12 @@
 #include "Module.h"
 //#include "p2DynArray.h"
 #include "Globals.h"
+#include "Timer.h"
 
 class Primitive;
 class ModuleGameObject;
 //class  PhysBody3D;
+class WwiseObject;
 
 class ModuleSceneIntro : public Module
 {
@@ -26,4 +28,11 @@ public:
 public:
 	std::vector<ModuleGameObject*> gameObjects = {};
 	std::string name = "DefaultScene";
+
+	ModuleGameObject* musicGameObject = nullptr;
+
+	uint sceneTimer = 0;
+	//uint trainTimer = 0;
+
+	uint trainTimer;
 };
